@@ -2,7 +2,9 @@
 {{#if @root.exportCore}}
 
 export { ApiError } from './core/ApiError';
-export { OpenAPI } from './core/OpenAPI';
+export { OpenAPI, DEFAULT_CONFIG } from './core/OpenAPI';
+export type { Config } from './core/OpenAPI';
+export { OpenAPIClient } from './core/request';
 {{/if}}
 {{#if @root.exportModels}}
 {{#if models}}
