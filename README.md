@@ -1,5 +1,14 @@
 # OpenAPI Typescript Codegen
 
+## Propps Modifications
+
+Forked from [ferdikoomen/openapi-typescript-codegen](https://github.com/ferdikoomen/openapi-typescript-codegen) with the following modifications:
+
+- Works with `node` target only.
+- Support for non-global configuration: instantiate `OpenAPIClient` and pass it in as the first parameter to every service method.
+
+---
+
 [![NPM][npm-image]][npm-url]
 [![License][license-image]][license-url]
 [![Build Status][travis-image]][travis-url]
