@@ -1,3 +1,4 @@
+client: OpenAPIClient,
 {{#if parameters}}
 {{#if @root.useOptions~}}
 {
@@ -11,7 +12,7 @@
 {{/if}}
 {{{name}}}{{>isRequired}}: {{>type}},
 {{/each}}
-}
+},
 {{~else}}
 
 {{#each parameters}}

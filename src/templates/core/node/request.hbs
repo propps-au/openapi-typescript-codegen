@@ -7,7 +7,7 @@ import { types } from 'util';
 import { ApiError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
-import { OpenAPI } from './OpenAPI';
+import { OpenAPI, Config } from './OpenAPI';
 
 {{>functions/isDefined}}
 
@@ -59,7 +59,7 @@ import { OpenAPI } from './OpenAPI';
  */
 export async function request(options: ApiRequestOptions): Promise<ApiResult> {
     const url = getUrl(options);
-    const response = await sendRequest(options, url);
+    const response = await sendRequest(options, url, OpenAPI);
     const responseBody = await getResponseBody(response);
     const responseHeader = getResponseHeader(response, options.responseHeader);
 
@@ -73,4 +73,26 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
 
     catchErrors(options, result);
     return result;
+}
+
+export class OpenAPIClient {
+    constructor(private config: Config) {}
+
+    public async request(options: ApiRequestOptions): Promise<ApiResult> {
+        const url = getUrl(options);
+        const response = await sendRequest(options, url, this.config);
+        const responseBody = await getResponseBody(response);
+        const responseHeader = getResponseHeader(response, options.responseHeader);
+
+        const result: ApiResult = {
+            url,
+            ok: response.ok,
+            status: response.status,
+            statusText: response.statusText,
+            body: responseHeader || responseBody,
+        };
+
+        catchErrors(options, result);
+        return result;
+    }
 }
