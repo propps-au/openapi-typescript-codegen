@@ -75,6 +75,10 @@ export async function request(options: ApiRequestOptions): Promise<ApiResult> {
     return result;
 }
 
+export interface IOpenAPIClient {
+    request(options: ApiRequestOptions): Promise<ApiResult>
+}
+
 export class OpenAPIClient {
     constructor(private config: Config) {}
 
