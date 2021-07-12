@@ -4,7 +4,8 @@
 
 Forked from [ferdikoomen/openapi-typescript-codegen](https://github.com/ferdikoomen/openapi-typescript-codegen) with the following modifications:
 
-- Works with `node` target only.
+- The `node` target can be used in the browser via `isomorphic-unfetch`
+- If the request takes a body, provide the body under `body` instead of `requestBody`
 - Support for non-global configuration: instantiate `OpenAPIClient` and pass it in as the first parameter to every service method.
 
 ---
