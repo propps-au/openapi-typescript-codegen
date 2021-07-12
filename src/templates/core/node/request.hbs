@@ -1,7 +1,7 @@
 {{>header}}
 
 import fetch from 'isomorphic-unfetch';
-import { types } from 'util';
+import isBuffer from 'is-buffer'
 
 import { ApiError } from './ApiError';
 import type { ApiRequestOptions } from './ApiRequestOptions';
