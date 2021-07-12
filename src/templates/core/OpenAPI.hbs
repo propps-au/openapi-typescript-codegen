@@ -12,7 +12,7 @@ export type Config = {
     TOKEN?: string | Resolver<string>;
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
-    HEADERS?: Headers | Resolver<Headers>;
+    HEADERS?: Record<string, string> | Resolver<Record<string, string>>;
 }
 
 export const OpenAPI: Config = {

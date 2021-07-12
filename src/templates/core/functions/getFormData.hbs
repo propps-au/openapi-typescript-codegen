@@ -1,5 +1,5 @@
-function getFormData(params: Record<string, any>): FormData {
-    const formData = new FormData();
+function getFormData(params: Record<string, any>): URLSearchParams {
+    const formData = new URLSearchParams();
     Object.keys(params).forEach(key => {
         const value = params[key];
         if (isDefined(value)) {
