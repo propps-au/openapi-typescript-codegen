@@ -1,6 +1,3 @@
 function isBinary(value: any): value is Buffer | ArrayBuffer | ArrayBufferView {
-    const isBuffer = isBuffer(value);
-    const isArrayBuffer = value instanceof ArrayBuffer;
-    const isArrayBufferView = value instanceof ArrayBufferView;
-    return isBuffer || isArrayBuffer || isArrayBufferView;
+    return isBuffer(value) || value instanceof ArrayBuffer || value instanceof ArrayBufferView;
 }
