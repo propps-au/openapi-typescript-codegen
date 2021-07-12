@@ -13,7 +13,7 @@ export function getOperationRequestBody(openApi: OpenApi, parameter: OpenApiRequ
         in: 'body',
         prop: 'body',
         export: 'interface',
-        name: 'requestBody',
+        name: 'body',
         type: 'any',
         base: 'any',
         template: null,
