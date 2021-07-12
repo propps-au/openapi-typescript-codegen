@@ -78,7 +78,7 @@ export interface IOpenAPIClient {
     request(options: ApiRequestOptions): Promise<ApiResult>
 }
 
-export class OpenAPIClient {
+export class OpenAPIClient implements IOpenAPIClient {
     constructor(private config: Config) {}
 
     public async request(options: ApiRequestOptions): Promise<ApiResult> {
@@ -98,4 +98,21 @@ export class OpenAPIClient {
         catchErrors(options, result);
         return result;
     }
+
+    public call<T extends Endpoint<any, any>>(
+        fn: T,
+        params: EndpointParams<T>
+    ): Promise<EndpointResult<T>> {
+        return this.endpoint(fn)(params)
+    }
+
+    public endpoint<T extends Endpoint<any, any>>(
+        fn: T
+    ): (params: EndpointParams<T>) => Promise<EndpointResult<T>> {
+        return (params) => fn(this, params)
+    }
 }
+
+type Endpoint<Params, Result> = (client: OpenAPIClient, params: Params) => Promise<Result>
+type EndpointParams<T> = T extends Endpoint<infer Params, any> ? Params : never
+type EndpointResult<T> = T extends Endpoint<any, infer Result> ? Result : never
