@@ -1,5 +1,5 @@
 import { copyFile as __copyFile, exists as __exists, readFile as __readFile, writeFile as __writeFile } from 'fs';
-import mkdirp from 'mkdirp';
+import fs from 'fs-extra';
 import rimraf from 'rimraf';
 import { promisify } from 'util';
 
@@ -10,7 +10,7 @@ export const copyFile = promisify(__copyFile);
 export const exists = promisify(__exists);
 
 // Re-export from mkdirp to make mocking easier
-export const mkdir = mkdirp;
+export const mkdir = fs.mkdirp;
 
 // Promisified version of rimraf
 export const rmdir = (path: string): Promise<void> =>
