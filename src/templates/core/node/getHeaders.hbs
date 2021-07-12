@@ -8,7 +8,7 @@ async function getHeaders(options: ApiRequestOptions, config: Config): Promise<R
         Accept: 'application/json',
         ...defaultHeaders,
         ...options.headers,
-    });
+    };
 
     if (isStringWithValue(token)) {
         headers['Authorization'] = `Bearer ${token}`;
