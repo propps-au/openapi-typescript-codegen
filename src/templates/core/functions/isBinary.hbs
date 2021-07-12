@@ -1,3 +1,25 @@
 function isBinary(value: any): value is Buffer | ArrayBuffer | ArrayBufferView {
-    return isBuffer(value) || value instanceof ArrayBuffer || value instanceof ArrayBufferView;
+    return isBuffer(value) || value instanceof ArrayBuffer || isArrayBufferView(value);
+}
+
+const ARRAY_BUFFER_VIEWS = [
+    Int8Array,
+    Uint8Array,
+    Uint8ClampedArray,
+    Int16Array,
+    Uint16Array,
+    Int32Array,
+    Uint32Array,
+    Float32Array,
+    Float64Array,
+    DataView,
+]
+
+function isArrayBufferView(value: any): value is ArrayBufferView {
+    return ARRAY_BUFFER_VIEWS.some(t => value instanceof t)
+}
+
+function isBuffer(obj: any) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
 }
