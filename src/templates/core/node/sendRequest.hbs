@@ -1,7 +1,7 @@
 async function sendRequest(options: ApiRequestOptions, url: string, config: Config): Promise<Response> {
     const request: RequestInit = {
         method: options.method,
-        headers: await getHeaders(options, config),
+        headers: JSON.parse(JSON.stringify(await getHeaders(options, config))),
         body: getRequestBody(options),
     };
     return await fetch(url, request);
